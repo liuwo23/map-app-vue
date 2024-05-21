@@ -8,7 +8,7 @@
           Простий і зручний веб додаток, який дозволить тобі відмічати твої улюблені місця, а також
           ті, в яких би ти дуже хотів побувати. Тож не зволікай і спробуй сам.
         </p>
-        <IButton></IButton>
+        <IButton>Почати роботу</IButton>
       </div>
     </section>
     <section class="flex-1">
@@ -18,6 +18,5 @@
 </template>
 <script setup lang="ts">
 import IButton from '@/components/Button/IButton.vue';
-
 
 </script>

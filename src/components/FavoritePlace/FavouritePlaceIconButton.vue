@@ -1,8 +1,9 @@
 <template>
-<button class=" bg-accent rounded-xl py-3 px-10 text-white font-bold -tracking-wide">
+<button class="text-gray cursor-pointer hover:text-primary transition-colors easy-in-out">
   <slot></slot>
 </button>
 </template>
+
 <script setup lang="ts">
 
 </script>

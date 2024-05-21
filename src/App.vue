@@ -1,7 +1,12 @@
 <template>
-<HomeView v-if="isDesktop"/>
+<HomeView/>
+  <div class="bg-white h-screen w-[400px]">
+    <FavouritePlaces />
+  </div>
 </template>
 <script setup lang="ts">
 import HomeView from '@/views/HomeView.vue'
-const isDesktop = window.innerWidth > 1024;
+import FavouritePlaces from './components/FavouritePlaces/FavouritePlaces.vue'
+
+
 </script>

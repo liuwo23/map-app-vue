@@ -8,7 +8,8 @@ export default {
     extend: {
       colors: {
         accent:'#FFA279',
-        primary: '#F3743D'
+        primary: '#F3743D',
+        gray: "#939393"
       }
     },
   },
