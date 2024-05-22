@@ -8,5 +8,4 @@
 import HomeView from '@/views/HomeView.vue'
 import FavouritePlaces from './components/FavouritePlaces/FavouritePlaces.vue'
 
-
 </script>
