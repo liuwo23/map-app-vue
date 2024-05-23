@@ -9,7 +9,8 @@ export default {
       colors: {
         accent:'#FFA279',
         primary: '#F3743D',
-        gray: "#939393"
+        gray: '#939393',
+        black: '#2C2C2C'
       }
     },
   },
