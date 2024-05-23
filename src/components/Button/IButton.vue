@@ -7,7 +7,8 @@
 import {defineProps, computed} from 'vue';
 
 const props = defineProps<{
-  variant: string
+  variant?: string,
+
 }>()
 
 const bgStyles = computed(() => {
