@@ -8,10 +8,9 @@ import {defineProps, computed} from 'vue';
 
 const props = defineProps<{
   variant?: string,
-
 }>()
 
-const bgStyles = computed(() => {
+const bgStyles = computed<string>(() => {
   return props.variant === 'gradient'
     ? 'bg-gradient-to-r from-[#FFA279] to-[#F3743D]'
     : 'bg-[#FFA279]'

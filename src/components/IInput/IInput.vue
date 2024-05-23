@@ -6,7 +6,6 @@ const props = defineProps<{
   placeholder?: string
   type?:string
   modelValue: string
-
 }>()
 defineOptions({
   inheritAttrs:false
@@ -15,14 +14,14 @@ const emit = defineEmits(['update:modelValue']);
 
 const baseStyles = "w-full text-sm rounded-[4px] border-[#eaeaea] border-[1px] py-2 px-3 focus:outline-primary";
 
-const isTextarea = computed(() => {
+const isTextarea = computed<boolean>(() => {
   return props.type === "textarea"
 });
 
-const inputStyles = computed(() => {
+const inputStyles = computed<string>(() => {
   return isTextarea.value ? baseStyles + ' resize-none' : baseStyles;
 });
-const componentName = computed(() => {
+const componentName = computed<string>(() => {
   return isTextarea.value ? 'textarea' : 'input'
 })
 </script>

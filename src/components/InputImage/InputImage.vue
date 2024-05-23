@@ -14,7 +14,7 @@ const handleUploadImage = (event: Event) => {
   if(file.size > 3*1024*1024) {
     errorMessage.value = 'Файл завеликий';
     return;
-  };
+  }
 
   const fileReader = new FileReader();
   fileReader.readAsDataURL(file);

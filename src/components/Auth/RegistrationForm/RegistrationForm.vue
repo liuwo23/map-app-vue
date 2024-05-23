@@ -11,8 +11,13 @@ import FormContainer from '@/components/Auth/FormContainer.vue'
 import IInput from '@/components/IInput/IInput.vue'
 import IButton from '@/components/Button/IButton.vue'
 import { reactive, toRaw } from 'vue'
+interface IRegister {
+  name: string,
+  email: string,
+  password: string
+}
 const emit = defineEmits(['submit'])
-const userData = reactive({
+const userData:IRegister = reactive({
   name: '',
   email: '',
   password: ''
