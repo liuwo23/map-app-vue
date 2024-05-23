@@ -8,6 +8,7 @@
 <script setup lang="ts">
 import FavoritePlace from '@/components/FavoritePlace/FavoritePlace.vue'
 import IButton from '@/components/Button/IButton.vue'
+
 import { ref } from 'vue'
 
 const counter = ref(4);

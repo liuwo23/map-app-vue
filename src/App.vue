@@ -1,11 +1,11 @@
 <template>
 <HomeView/>
-  <div class="bg-white h-screen w-[400px]">
-    <FavouritePlaces />
-  </div>
+ <RegistrationForm @submit="console.log"/>
+  <LoginForm @submit="console.log"/>
 </template>
 <script setup lang="ts">
 import HomeView from '@/views/HomeView.vue'
-import FavouritePlaces from './components/FavouritePlaces/FavouritePlaces.vue'
+import RegistrationForm from '@/components/Auth/RegistrationForm/RegistrationForm.vue'
+import LoginForm from '@/components/Auth/LoginForm/LoginForm.vue'
 
 </script>
