@@ -17,6 +17,5 @@
   </main>
 </template>
 <script setup lang="ts">
-import IButton from '@/components/Button/IButton.vue';
-
+import IButton from '@/components/Button/IButton.vue'
 </script>
