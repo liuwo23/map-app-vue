@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import FavoritePlace from '@/components/FavoritePlace/FavoritePlace.vue'
 import IButton from '@/components/Button/IButton.vue'
-import  IFavItem from '../../interfaces/IFavItem';
+import type IFavItem from '../../interfaces/IFavItem';
 import { defineProps } from 'vue'
 
 

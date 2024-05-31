@@ -29,7 +29,7 @@ import type { Ref } from 'vue'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { ref } from 'vue'
 import MarkerIcon from '@/components/icons/MarkerIcon.vue'
-import  IFavItem from './interfaces/IFavItem';
+import type IFavItem from './interfaces/IFavItem';
 
 
 const mapToken = import.meta.env.VITE_MAPBOX_TOKEN
