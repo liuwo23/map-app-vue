@@ -7,6 +7,8 @@
       :title="place.title"
       :description="place.description"
       :img="place.img"
+      :isActive="place.id === activeId"
+      @click="emit('place-clicked', place.id)"
     />
     <IButton variant="gradient" class="w-full mt-10">Додати маркер</IButton>
   </div>
@@ -14,17 +16,15 @@
 <script setup lang="ts">
 import FavoritePlace from '@/components/FavoritePlace/FavoritePlace.vue'
 import IButton from '@/components/Button/IButton.vue'
+import  IFavItem from '../../interfaces/IFavItem';
 import { defineProps } from 'vue'
-interface IFavItem {
-  id: number
-  img?: string
-  title: string
-  description: string
-  lngLat: []
-}
+
 
 const props = defineProps<{
   items: IFavItem[]
+  activeId: null | number
 }>()
+
+const emit = defineEmits(['place-clicked'])
 </script>
 <style scoped></style>

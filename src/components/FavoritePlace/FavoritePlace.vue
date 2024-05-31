@@ -19,7 +19,10 @@
         </p>
       </div>
     </div>
-    <div class="h-[1px] w-full bg-[#ececec] mt-4"></div>
+    <div
+      :class="isActive ? 'bg-primary' : 'bg-[#ececec]'"
+      class="transition-colors easy-in-out h-[1px] w-full mt-4"
+    ></div>
   </section>
 </template>
 <script setup lang="ts">
@@ -32,5 +35,6 @@ const props = defineProps<{
   img?: string
   title: string
   description: string
+  isActive: boolean
 }>()
 </script>
