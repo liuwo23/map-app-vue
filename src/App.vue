@@ -1,6 +1,6 @@
 <template>
   <main class="flex h-screen w-full">
-  <RouterView/>
+    <RouterView />
   </main>
 </template>
 <script setup lang="ts">

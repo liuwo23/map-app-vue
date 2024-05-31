@@ -1,14 +1,12 @@
 <script setup lang="ts">
-
+import { RouterView } from 'vue-router'
 import BaseLayout from '@/layouts/BaseLayout.vue'
 </script>
 
 <template>
-<BaseLayout></BaseLayout>
-
-
+  <BaseLayout>
+    <RouterView />
+  </BaseLayout>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
