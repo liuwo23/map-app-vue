@@ -1,5 +1,5 @@
 <template>
-  <FormContainer @submit.prevent="emit('submit', toRaw(loginData))">
+  <form @submit.prevent="emit('submit', toRaw(loginData))">
     <IInput
       class="mb-4"
       v-model="loginData.email"
@@ -8,10 +8,9 @@
     />
     <IInput v-model="loginData.password" label="Пароль" type="password" placeholder="***********" />
     <IButton class="mt-10 w-full" variant="gradient" type="submit">Увійти</IButton>
-  </FormContainer>
+  </form>
 </template>
 <script setup lang="ts">
-import FormContainer from '@/components/Auth/FormContainer.vue'
 import IInput from '@/components/IInput/IInput.vue'
 interface ILogin {
   email: string

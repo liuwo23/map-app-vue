@@ -7,7 +7,7 @@
         Простий і зручний веб додаток, який дозволить тобі відмічати твої улюблені місця, а також
         ті, в яких би ти дуже хотів побувати. Тож не зволікай і спробуй сам.
       </p>
-      <IButton variant="primary">Почати роботу</IButton>
+      <IButton :to="'/auth/registration'" variant="primary">Почати роботу</IButton>
     </div>
   </BaseLayout>
 </template>
