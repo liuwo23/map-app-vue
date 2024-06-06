@@ -5,7 +5,10 @@
     :to="link"
     class="bg-accent rounded-xl py-3 px-10 text-white font-bold -tracking-wide"
   >
-    <slot></slot>
+    <template v-if="props.isLoading"> Loading... </template>
+    <template v-else>
+      <slot></slot>
+    </template>
   </component>
 </template>
 <script setup lang="ts">
@@ -16,6 +19,7 @@ import type { _RouterLinkI } from 'vue-router'
 const props = defineProps<{
   variant?: string
   to?: string
+  isLoading?: boolean
 }>()
 
 const isLink = computed<boolean>(() => !!props.to)

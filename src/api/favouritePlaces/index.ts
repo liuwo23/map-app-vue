@@ -1,7 +1,6 @@
 import { clientFetch } from '../clientFetch'
-import type { IFavPlace,IAddFavPlace, IDeleteFavPlace } from '../../interfaces/IFavItem'
+import type { IFavPlace, IAddFavPlace, IDeleteFavPlace } from '../../interfaces/IFavItem'
 const BASE_PLACES_URL = 'points'
-
 
 export const getFavouritePlaces = () => {
   return clientFetch.get(BASE_PLACES_URL)

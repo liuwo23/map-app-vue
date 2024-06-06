@@ -8,13 +8,19 @@
       placeholder="test@gmail.com"
     />
     <IInput v-model="userData.password" label="Пароль" type="password" />
-    <IButton class="mt-10 w-full" variant="gradient" type="submit">Створити аккаунт</IButton>
+    <IButton :isLoading="props.isLoading" class="mt-10 w-full" variant="gradient" type="submit"
+      >Створити аккаунт</IButton
+    >
   </form>
 </template>
 <script setup lang="ts">
 import IInput from '@/components/IInput/IInput.vue'
 import IButton from '@/components/Button/IButton.vue'
 import { reactive, toRaw } from 'vue'
+
+const props = defineProps<{
+  isLoading: boolean
+}>()
 interface IRegister {
   name: string
   email: string
