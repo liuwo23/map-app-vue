@@ -7,8 +7,17 @@
 import RegistrationForm from '@/components/Auth/RegistrationForm/RegistrationForm.vue';
 import { registerUser } from '../api/user/index';
 import { useMutation } from '../composables/useMutation';
+import { useRouter } from 'vue-router';
 
-const { isLoading, error, mutation: handleRegisterUser } = useMutation(registerUser);
+const router = useRouter();
+const {
+  isLoading,
+  error,
+  mutation: handleRegisterUser
+} = useMutation({
+  mutationFn: registerUser,
+  onSuccess: () => router.replace('/map')
+});
 </script>
 
 <style scoped></style>

@@ -1,7 +1,11 @@
 import { ref } from 'vue';
 import type { Ref } from 'vue';
-
-export const useMutation = (mutationFn: Function) => {
+interface IMutationActions {
+  mutationFn: Function;
+  onSuccess?: Function;
+  onError?: Function;
+}
+export const useMutation = ({ mutationFn, onSuccess, onError }: IMutationActions) => {
   const data = ref();
   const isLoading: Ref<boolean> = ref(false);
   const error: Ref<null | unknown> = ref(null);
@@ -10,8 +14,10 @@ export const useMutation = (mutationFn: Function) => {
     try {
       data.value = await mutationFn(...args);
       error.value = null;
+      onSuccess?.(data.value);
     } catch (e) {
       error.value = e;
+      onError?.(error.value);
     } finally {
       isLoading.value = false;
     }

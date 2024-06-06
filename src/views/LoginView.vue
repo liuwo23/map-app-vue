@@ -7,8 +7,18 @@
 import LoginForm from '@/components/Auth/LoginForm/LoginForm.vue';
 import { loginUser } from '../api/user';
 import { useMutation } from '../composables/useMutation';
+import { useRouter } from 'vue-router';
 
-const { isLoading, error, mutation: handleLoginUser } = useMutation(loginUser);
+const router = useRouter();
+
+const {
+  isLoading,
+  error,
+  mutation: handleLoginUser
+} = useMutation({
+  mutationFn: loginUser,
+  onSuccess: () => router.replace('/map')
+});
 </script>
 
 <style scoped></style>
