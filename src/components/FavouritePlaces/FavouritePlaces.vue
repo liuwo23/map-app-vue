@@ -14,16 +14,16 @@
   </div>
 </template>
 <script setup lang="ts">
-import FavoritePlace from '@/components/FavoritePlace/FavoritePlace.vue'
-import IButton from '@/components/Button/IButton.vue'
-import type IFavItem from '../../interfaces/IFavItem'
-import { defineProps } from 'vue'
+import FavoritePlace from '@/components/FavoritePlace/FavoritePlace.vue';
+import IButton from '@/components/Button/IButton.vue';
+import type IFavItem from '../../interfaces/IFavItem';
+import { defineProps } from 'vue';
 
 const props = defineProps<{
-  items: IFavItem[]
-  activeId: null | number
-}>()
+  items: IFavItem[];
+  activeId: null | number;
+}>();
 
-const emit = defineEmits(['place-clicked'])
+const emit = defineEmits(['place-clicked']);
 </script>
 <style scoped></style>

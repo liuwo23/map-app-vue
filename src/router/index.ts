@@ -1,11 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import type { RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router';
 
-const GreetingPage = () => import('../views/GreetingView.vue')
-const AuthPage = () => import('../views/AuthView.vue')
-const HomepagePage = () => import('../views/HomepageView.vue')
-const LoginPage = () => import('../views/LoginView.vue')
-const RegistrationPage = () => import('../views/RegistrationView.vue')
+const GreetingPage = () => import('../views/GreetingView.vue');
+const AuthPage = () => import('../views/AuthView.vue');
+const HomepagePage = () => import('../views/HomepageView.vue');
+const LoginPage = () => import('../views/LoginView.vue');
+const RegistrationPage = () => import('../views/RegistrationView.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -31,9 +31,9 @@ const routes: Array<RouteRecordRaw> = [
       }
     ]
   }
-]
+];
 
 export const router = createRouter({
   history: createWebHistory(),
   routes
-})
+});

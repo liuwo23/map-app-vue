@@ -12,6 +12,6 @@
   </BaseLayout>
 </template>
 <script setup lang="ts">
-import BaseLayout from '@/layouts/BaseLayout.vue'
-import IButton from '@/components/Button/IButton.vue'
+import BaseLayout from '@/layouts/BaseLayout.vue';
+import IButton from '@/components/Button/IButton.vue';
 </script>

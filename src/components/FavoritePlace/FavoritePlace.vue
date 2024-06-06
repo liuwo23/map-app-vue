@@ -26,15 +26,15 @@
   </section>
 </template>
 <script setup lang="ts">
-import FavouritePlaceIconButton from '@/components/FavoritePlace/FavouritePlaceIconButton.vue'
-import DeleteIcon from '@/components/FavoritePlace/DeleteIcon.vue'
-import EditIcon from '@/components/FavoritePlace/EditIcon.vue'
-import { defineProps } from 'vue'
+import FavouritePlaceIconButton from '@/components/FavoritePlace/FavouritePlaceIconButton.vue';
+import DeleteIcon from '@/components/FavoritePlace/DeleteIcon.vue';
+import EditIcon from '@/components/FavoritePlace/EditIcon.vue';
+import { defineProps } from 'vue';
 
 const props = defineProps<{
-  img?: string
-  title: string
-  description: string
-  isActive: boolean
-}>()
+  img?: string;
+  title: string;
+  description: string;
+  isActive: boolean;
+}>();
 </script>

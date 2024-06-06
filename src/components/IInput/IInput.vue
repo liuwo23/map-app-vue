@@ -1,30 +1,30 @@
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
+import { defineProps, computed } from 'vue';
 
 const props = defineProps<{
-  label: string
-  placeholder?: string
-  type?: string
-  modelValue: string
-}>()
+  label: string;
+  placeholder?: string;
+  type?: string;
+  modelValue: string;
+}>();
 defineOptions({
   inheritAttrs: false
-})
-const emit = defineEmits(['update:modelValue'])
+});
+const emit = defineEmits(['update:modelValue']);
 
 const baseStyles =
-  'w-full text-sm rounded-[4px] border-[#eaeaea] border-[1px] py-2 px-3 focus:outline-primary'
+  'w-full text-sm rounded-[4px] border-[#eaeaea] border-[1px] py-2 px-3 focus:outline-primary';
 
 const isTextarea = computed<boolean>(() => {
-  return props.type === 'textarea'
-})
+  return props.type === 'textarea';
+});
 
 const inputStyles = computed<string>(() => {
-  return isTextarea.value ? baseStyles + ' resize-none' : baseStyles
-})
+  return isTextarea.value ? baseStyles + ' resize-none' : baseStyles;
+});
 const componentName = computed<string>(() => {
-  return isTextarea.value ? 'textarea' : 'input'
-})
+  return isTextarea.value ? 'textarea' : 'input';
+});
 </script>
 
 <template>

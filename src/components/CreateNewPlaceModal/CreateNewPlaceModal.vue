@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import IModal from '../IModal/IModal.vue'
-import MarkerIcon from '@/components/icons/MarkerIcon.vue'
-import IInput from '@/components/IInput/IInput.vue'
-import InputImage from '@/components/InputImage/InputImage.vue'
-import IButton from '@/components/Button/IButton.vue'
-import { reactive, computed, defineProps } from 'vue'
+import IModal from '../IModal/IModal.vue';
+import MarkerIcon from '@/components/icons/MarkerIcon.vue';
+import IInput from '@/components/IInput/IInput.vue';
+import InputImage from '@/components/InputImage/InputImage.vue';
+import IButton from '@/components/Button/IButton.vue';
+import { reactive, computed, defineProps } from 'vue';
 
 interface IFormData {
-  title: string
-  description: string
-  img: string
+  title: string;
+  description: string;
+  img: string;
 }
 
 defineProps<{
-  isOpen: Boolean
-}>()
+  isOpen: Boolean;
+}>();
 
-const emit = defineEmits(['close', 'submit'])
+const emit = defineEmits(['close', 'submit']);
 
 const formData: IFormData = reactive({
   title: '',
   description: '',
   img: ''
-})
+});
 const handleUploaded = (url: string) => {
-  formData.img = url
-}
+  formData.img = url;
+};
 const uploadText = computed<string>(() => {
-  return formData.img ? 'Натисніть тут, щоб змінити фото' : 'Натисніть тут, щоб додати фото'
-})
+  return formData.img ? 'Натисніть тут, щоб змінити фото' : 'Натисніть тут, щоб додати фото';
+});
 </script>
 
 <template>

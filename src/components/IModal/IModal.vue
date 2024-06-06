@@ -14,16 +14,16 @@
   </component>
 </template>
 <script setup lang="ts">
-import CrossIcon from '@/components/icons/CrossIcon.vue'
-import { onMounted, onUnmounted, Teleport } from 'vue'
+import CrossIcon from '@/components/icons/CrossIcon.vue';
+import { onMounted, onUnmounted, Teleport } from 'vue';
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close']);
 
 onMounted(() => {
-  document.body.style.overflow = 'hidden'
-})
+  document.body.style.overflow = 'hidden';
+});
 onUnmounted(() => {
-  document.body.style.overflow = 'initial'
-})
+  document.body.style.overflow = 'initial';
+});
 </script>
 <style scoped></style>

@@ -7,21 +7,26 @@
       placeholder="test@gmail.com"
     />
     <IInput v-model="loginData.password" label="Пароль" type="password" placeholder="***********" />
-    <IButton class="mt-10 w-full" variant="gradient" type="submit">Увійти</IButton>
+    <IButton :isLoading="props.isLoading" class="mt-10 w-full" variant="gradient" type="submit"
+      >Увійти</IButton
+    >
   </form>
 </template>
 <script setup lang="ts">
-import IInput from '@/components/IInput/IInput.vue'
+import IInput from '@/components/IInput/IInput.vue';
 interface ILogin {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
-import IButton from '@/components/Button/IButton.vue'
-import { reactive, toRaw } from 'vue'
-const emit = defineEmits(['submit'])
+import IButton from '@/components/Button/IButton.vue';
+import { reactive, toRaw } from 'vue';
+const props = defineProps<{
+  isLoading: boolean;
+}>();
+const emit = defineEmits(['submit']);
 const loginData: ILogin = reactive({
   email: '',
   password: ''
-})
+});
 </script>
 <style scoped></style>

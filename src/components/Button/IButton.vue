@@ -12,31 +12,31 @@
   </component>
 </template>
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
-import { RouterLink } from 'vue-router'
-import type { _RouterLinkI } from 'vue-router'
+import { defineProps, computed } from 'vue';
+import { RouterLink } from 'vue-router';
+import type { _RouterLinkI } from 'vue-router';
 
 const props = defineProps<{
-  variant?: string
-  to?: string
-  isLoading?: boolean
-}>()
+  variant?: string;
+  to?: string;
+  isLoading?: boolean;
+}>();
 
-const isLink = computed<boolean>(() => !!props.to)
+const isLink = computed<boolean>(() => !!props.to);
 
 const componentName = computed<_RouterLinkI | 'button'>(() => {
-  return isLink.value ? RouterLink : 'button'
-})
+  return isLink.value ? RouterLink : 'button';
+});
 
 const link = computed<string | undefined>(() => {
-  return isLink.value ? props.to : undefined
-})
+  return isLink.value ? props.to : undefined;
+});
 
 const bgStyles = computed<string>(() => {
   return props.variant === 'gradient'
     ? 'bg-gradient-to-r from-[#FFA279] to-[#F3743D]'
-    : 'bg-[#FFA279]'
-})
+    : 'bg-[#FFA279]';
+});
 </script>
 
 <style scoped></style>

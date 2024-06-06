@@ -14,24 +14,24 @@
   </form>
 </template>
 <script setup lang="ts">
-import IInput from '@/components/IInput/IInput.vue'
-import IButton from '@/components/Button/IButton.vue'
-import { reactive, toRaw } from 'vue'
+import IInput from '@/components/IInput/IInput.vue';
+import IButton from '@/components/Button/IButton.vue';
+import { reactive, toRaw } from 'vue';
 
 const props = defineProps<{
-  isLoading: boolean
-}>()
+  isLoading: boolean;
+}>();
 interface IRegister {
-  name: string
-  email: string
-  password: string
+  name: string;
+  email: string;
+  password: string;
 }
-const emit = defineEmits(['submit'])
+const emit = defineEmits(['submit']);
 const userData: IRegister = reactive({
   name: '',
   email: '',
   password: ''
-})
+});
 </script>
 
 <style scoped></style>

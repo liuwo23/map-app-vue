@@ -4,6 +4,6 @@
   </main>
 </template>
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import 'mapbox-gl/dist/mapbox-gl.css'
+import { RouterView } from 'vue-router';
+import 'mapbox-gl/dist/mapbox-gl.css';
 </script>
