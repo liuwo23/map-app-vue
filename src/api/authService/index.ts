@@ -13,10 +13,11 @@ class AuthService {
   isLoggedIn() {
     return Boolean(this.token);
   }
-
+  getToken() {
+    return this.token;
+  }
   setToken(token: string) {
     localStorage.setItem(TOKEN_KEY, token);
-    clientFetch.defaults.headers.common = { Authorization: `Bearer ${token}` };
     this.token = token;
   }
   clearToken() {
@@ -39,7 +40,9 @@ class AuthService {
     this.clearToken();
   }
   async refreshUserToken() {
-    return await clientFetch.get('user/refresh');
+    const { data } = await clientFetch.get('user/refresh');
+    const { accessToken } = data;
+    this.setToken(accessToken);
   }
 }
 
