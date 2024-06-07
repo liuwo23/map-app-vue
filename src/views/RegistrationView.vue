@@ -5,9 +5,10 @@
 
 <script setup lang="ts">
 import RegistrationForm from '@/components/Auth/RegistrationForm/RegistrationForm.vue';
-import { registerUser } from '../api/user/index';
+import type { IUserRegister } from '../interfaces/IUser';
 import { useMutation } from '../composables/useMutation';
 import { useRouter } from 'vue-router';
+import { authService } from '../api/authService';
 
 const router = useRouter();
 const {
@@ -15,7 +16,7 @@ const {
   error,
   mutation: handleRegisterUser
 } = useMutation({
-  mutationFn: registerUser,
+  mutationFn: (data: IUserRegister) => authService.registerUser(data),
   onSuccess: () => router.replace('/map')
 });
 </script>

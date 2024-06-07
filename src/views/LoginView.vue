@@ -5,9 +5,10 @@
 
 <script setup lang="ts">
 import LoginForm from '@/components/Auth/LoginForm/LoginForm.vue';
-import { loginUser } from '../api/user';
+import type { IUserLogin } from '../interfaces/IUser';
 import { useMutation } from '../composables/useMutation';
 import { useRouter } from 'vue-router';
+import { authService } from '../api/authService';
 
 const router = useRouter();
 
@@ -16,7 +17,7 @@ const {
   error,
   mutation: handleLoginUser
 } = useMutation({
-  mutationFn: loginUser,
+  mutationFn: (data: IUserLogin) => authService.loginUser(data),
   onSuccess: () => router.replace('/map')
 });
 </script>
