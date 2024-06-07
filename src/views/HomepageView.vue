@@ -20,17 +20,19 @@
   </div>
 </template>
 <script setup lang="ts">
-import FavouritePlaces from '@/components/FavouritePlaces/FavouritePlaces.vue';
-import { MapboxMap, MapboxMarker } from '@studiometa/vue-mapbox-gl';
 import type { Map } from 'mapbox-gl';
-import type { Ref } from 'vue';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import { ref } from 'vue';
-import MarkerIcon from '@/components/icons/MarkerIcon.vue';
 import type IFavItem from '../interfaces/IFavItem';
+import { onMounted, ref, type Ref } from 'vue';
+import { getFavouritePlaces } from '../api/favouritePlaces';
+import { MapboxMap, MapboxMarker } from '@studiometa/vue-mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import FavouritePlaces from '@/components/FavouritePlaces/FavouritePlaces.vue';
+import MarkerIcon from '@/components/icons/MarkerIcon.vue';
 
 const mapToken = import.meta.env.VITE_MAPBOX_TOKEN;
 const mapStyle = import.meta.env.VITE_MAP_STYLE;
+
+const favoritePlaces: Ref<IFavItem[]> = ref([]);
 
 const activeID: Ref<null | number> = ref(null);
 const map: Ref<Map | null> = ref(null);
@@ -39,7 +41,7 @@ const changeActiveID = (id: number) => {
 };
 
 const changePlace = (id: number) => {
-  const place = favoritePlaces.find((place) => place.id === id);
+  const place = favoritePlaces.value.find((place) => place.id === id);
   const lngLat = place!.lngLat;
   changeActiveID(id);
   if (map.value !== null) {
@@ -47,20 +49,12 @@ const changePlace = (id: number) => {
   }
 };
 
-const favoritePlaces: IFavItem[] = [
-  {
-    id: 1,
-    title: 'New place 1',
-    description: 'Super description 1',
-    img: '',
-    lngLat: [30.523333, 50.490001]
-  },
-  {
-    id: 2,
-    title: 'New place 2',
-    description: 'Super description 2',
-    img: '',
-    lngLat: [30.523333, 50.460001]
+onMounted(async () => {
+  try {
+    const { data } = await getFavouritePlaces();
+    favoritePlaces.value = data;
+  } catch (e) {
+    console.log(e);
   }
-];
+});
 </script>
