@@ -6,10 +6,10 @@
         <div class="flex justify-between items-center mb-2">
           <h2 class="font-bold text-sm text-[#2C2C2C]">{{ props.title }}</h2>
           <div class="flex gap-2">
-            <FavouritePlaceIconButton>
+            <FavouritePlaceIconButton @click="emit('edit')">
               <EditIcon />
             </FavouritePlaceIconButton>
-            <FavouritePlaceIconButton>
+            <FavouritePlaceIconButton @click="emit('delete')">
               <DeleteIcon />
             </FavouritePlaceIconButton>
           </div>
@@ -29,7 +29,7 @@
 import FavouritePlaceIconButton from '@/components/FavoritePlace/FavouritePlaceIconButton.vue';
 import DeleteIcon from '@/components/FavoritePlace/DeleteIcon.vue';
 import EditIcon from '@/components/FavoritePlace/EditIcon.vue';
-import { defineProps } from 'vue';
+import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps<{
   img?: string;
@@ -37,4 +37,6 @@ const props = defineProps<{
   description: string;
   isActive: boolean;
 }>();
+
+const emit = defineEmits(['edit', 'delete']);
 </script>

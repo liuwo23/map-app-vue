@@ -7,7 +7,7 @@
       @create="openModal"
     />
     <CreateNewPlaceModal
-      :has-error="error"
+      :has-error="!!error"
       :is-loading="isAddingPlace"
       :is-open="isOpen"
       @close="closeModal"
@@ -77,10 +77,10 @@ const mapToken = import.meta.env.VITE_MAPBOX_TOKEN;
 const mapStyle = import.meta.env.VITE_MAP_STYLE;
 
 const mapMarkerLngLat: Ref<[number, number] | null> = ref(null);
-const activeID: Ref<null | number> = ref(null);
+const activeID: Ref<null | string> = ref(null);
 const map: Ref<Map | null> = ref(null);
 
-const favoritePlaces: Ref<IFavItem[]> = computed(() => data.value?.data ?? []);
+const favoritePlaces: Ref<IFavItem[]> = computed(() => data.value ?? []);
 
 const handleAddPlace = async (formData: IFormData, resetFormData: Function) => {
   try {
@@ -98,11 +98,11 @@ const handleAddPlace = async (formData: IFormData, resetFormData: Function) => {
   }
 };
 
-const changeActiveID = (id: number) => {
+const changeActiveID = (id: string) => {
   activeID.value = id;
 };
 
-const changePlace = (id: number) => {
+const changePlace = (id: string) => {
   const place = favoritePlaces.value.find((place) => place.id === id);
   const lngLat = place!.coordinates;
   changeActiveID(id);

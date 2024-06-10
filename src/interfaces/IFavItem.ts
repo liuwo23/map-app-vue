@@ -1,5 +1,5 @@
 export default interface IFavItem {
-  id: number;
+  id: string;
   img?: string;
   title: string;
   description: string;
@@ -13,7 +13,7 @@ export interface IAddFavPlace {
   coordinates: [number, number];
 }
 export interface IFavPlace extends IAddFavPlace {
-  id: number;
+  id: string;
 }
 
 export interface IDeleteFavPlace {

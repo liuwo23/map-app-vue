@@ -12,22 +12,29 @@
       :description="place.description"
       :img="place.img"
       :isActive="place.id === activeId"
-      @click="emit('place-clicked', place.id)"
+      @click="emit('place-clicked',place.id)"
+      @edit="openEditModal"
     />
+
     <IButton @click="emit('create')" variant="gradient" class="w-full mt-10">Додати маркер</IButton>
+    <EditPlaceModal :is-open="isEditOpen" @close="closeEditModal" />
   </div>
 </template>
 <script setup lang="ts">
 import FavoritePlace from '@/components/FavoritePlace/FavoritePlace.vue';
 import IButton from '@/components/Button/IButton.vue';
+import EditPlaceModal from '@/components/EditPlaceModal/EditPlaceModal.vue';
 import type IFavItem from '../../interfaces/IFavItem';
+import { useModal } from '../../composables/useModal';
 import { defineProps } from 'vue';
 
 const props = defineProps<{
   items: IFavItem[];
-  activeId: null | number;
+  activeId: null | string;
 }>();
 
 const emit = defineEmits(['place-clicked', 'create']);
+
+const { isOpen: isEditOpen, openModal: openEditModal, closeModal: closeEditModal } = useModal();
 </script>
 <style scoped></style>
