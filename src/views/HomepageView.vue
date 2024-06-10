@@ -9,18 +9,27 @@
       :access-token="mapToken"
       :map-style="mapStyle"
       class="w-full h-full"
-      @mb-created="(mapInstans) => (map = mapInstans)"
+      @mb-click="handleMapClick"
+      @mb-created="(mapInstance) => (map = mapInstance)"
     >
-      <MapboxMarker v-for="place in favoritePlaces" :key="place.id" :lngLat="place.lngLat">
+      <MapboxMarker
+        v-for="place in favoritePlaces"
+        :key="place.id"
+        :lngLat="place.lngLat"
+        anchor="bottom"
+      >
         <button @click="changeActiveID(place.id)">
           <MarkerIcon class="h-8 w-8" />
         </button>
+      </MapboxMarker>
+      <MapboxMarker v-if="mapMarkerLngLat" :lngLat="mapMarkerLngLat" anchor="bottom">
+        <MarkerIcon class="h-8 w-8" />
       </MapboxMarker>
     </MapboxMap>
   </div>
 </template>
 <script setup lang="ts">
-import type { Map } from 'mapbox-gl';
+import { type Map, MapMouseEvent } from 'mapbox-gl';
 import type IFavItem from '../interfaces/IFavItem';
 import { onMounted, ref, type Ref } from 'vue';
 import { getFavouritePlaces } from '../api/favouritePlaces';
@@ -33,7 +42,7 @@ const mapToken = import.meta.env.VITE_MAPBOX_TOKEN;
 const mapStyle = import.meta.env.VITE_MAP_STYLE;
 
 const favoritePlaces: Ref<IFavItem[]> = ref([]);
-
+const mapMarkerLngLat: Ref<[number, number] | null> = ref(null);
 const activeID: Ref<null | number> = ref(null);
 const map: Ref<Map | null> = ref(null);
 const changeActiveID = (id: number) => {
@@ -47,6 +56,11 @@ const changePlace = (id: number) => {
   if (map.value !== null) {
     map.value.flyTo({ center: lngLat });
   }
+};
+
+const handleMapClick = (mapContext: MapMouseEvent) => {
+  const lngLat = mapContext.lngLat;
+  mapMarkerLngLat.value = [lngLat.lng, lngLat.lat];
 };
 
 onMounted(async () => {
