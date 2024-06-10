@@ -14,7 +14,7 @@
       :isActive="place.id === activeId"
       @click="emit('place-clicked', place.id)"
     />
-    <IButton variant="gradient" class="w-full mt-10">Додати маркер</IButton>
+    <IButton @click="emit('create')" variant="gradient" class="w-full mt-10">Додати маркер</IButton>
   </div>
 </template>
 <script setup lang="ts">
@@ -28,6 +28,6 @@ const props = defineProps<{
   activeId: null | number;
 }>();
 
-const emit = defineEmits(['place-clicked']);
+const emit = defineEmits(['place-clicked', 'create']);
 </script>
 <style scoped></style>

@@ -1,6 +1,12 @@
 <template>
   <div class="bg-white h-full w-[400px] shrink-0 overflow-auto pb-10">
-    <FavouritePlaces :items="favoritePlaces" :activeId="activeID" @place-clicked="changePlace" />
+    <FavouritePlaces
+      :items="favoritePlaces"
+      :activeId="activeID"
+      @place-clicked="changePlace"
+      @create="openModal"
+    />
+    <CreateNewPlaceModal :is-open="isOpen" @close="closeModal" />
   </div>
   <div class="w-full h-full flex items-center justify-center text-6xl">
     <MapboxMap
@@ -35,8 +41,12 @@ import { onMounted, ref, type Ref } from 'vue';
 import { getFavouritePlaces } from '../api/favouritePlaces';
 import { MapboxMap, MapboxMarker } from '@studiometa/vue-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { useModal } from '../composables/useModal';
 import FavouritePlaces from '@/components/FavouritePlaces/FavouritePlaces.vue';
 import MarkerIcon from '@/components/icons/MarkerIcon.vue';
+import CreateNewPlaceModal from '@/components/CreateNewPlaceModal/CreateNewPlaceModal.vue';
+
+const { isOpen, closeModal, openModal } = useModal();
 
 const mapToken = import.meta.env.VITE_MAPBOX_TOKEN;
 const mapStyle = import.meta.env.VITE_MAP_STYLE;
@@ -45,6 +55,7 @@ const favoritePlaces: Ref<IFavItem[]> = ref([]);
 const mapMarkerLngLat: Ref<[number, number] | null> = ref(null);
 const activeID: Ref<null | number> = ref(null);
 const map: Ref<Map | null> = ref(null);
+
 const changeActiveID = (id: number) => {
   activeID.value = id;
 };
