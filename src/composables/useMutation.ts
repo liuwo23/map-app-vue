@@ -9,7 +9,7 @@ export const useMutation = ({ mutationFn, onSuccess, onError }: IMutationActions
   const data = ref();
   const isLoading: Ref<boolean> = ref(false);
   const error: Ref<null | unknown> = ref(null);
-  const mutation = async (...args: []) => {
+  const mutation = async (...args: {}[]) => {
     isLoading.value = true;
     try {
       data.value = await mutationFn(...args);

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { IFormData } from '../../interfaces/IModalFormData';
 import IModal from '../IModal/IModal.vue';
 import MarkerIcon from '@/components/icons/MarkerIcon.vue';
 import IInput from '@/components/IInput/IInput.vue';
@@ -6,14 +7,10 @@ import InputImage from '@/components/InputImage/InputImage.vue';
 import IButton from '@/components/Button/IButton.vue';
 import { reactive, computed, defineProps } from 'vue';
 
-interface IFormData {
-  title: string;
-  description: string;
-  img: string;
-}
-
 defineProps<{
-  isOpen: Boolean;
+  isOpen: boolean;
+  isLoading: boolean;
+  hasError: boolean;
 }>();
 
 const emit = defineEmits(['close', 'submit']);
@@ -29,11 +26,17 @@ const handleUploaded = (url: string) => {
 const uploadText = computed<string>(() => {
   return formData.img ? 'Натисніть тут, щоб змінити фото' : 'Натисніть тут, щоб додати фото';
 });
+
+const resetFormData = () => {
+  formData.title = '';
+  formData.description = '';
+  formData.img = '';
+};
 </script>
 
 <template>
   <IModal v-if="isOpen" @close="emit('close')">
-    <form @submit.prevent="emit('submit', formData)" class="min-w-[420px]">
+    <form @submit.prevent="emit('submit', formData, resetFormData)" class="min-w-[420px]">
       <div class="mb-10 font-bold text-center flex gap-1 items-center justify-center">
         <MarkerIcon />
         Додати маркери
@@ -49,8 +52,13 @@ const uploadText = computed<string>(() => {
         />
         <InputImage @uploaded="handleUploaded">{{ uploadText }}</InputImage>
       </div>
-      <IButton variant="gradient" class="w-full" type="submit">Додати</IButton>
+      <IButton :is-loading="isLoading" variant="gradient" class="w-full" type="submit"
+        >Додати</IButton
+      >
     </form>
+    <div v-if="hasError">
+      <p class="text-red-500 text-sm">Щось пішло не так, перевірте ваші дані!</p>
+    </div>
   </IModal>
 </template>
 

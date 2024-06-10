@@ -3,17 +3,19 @@ export default interface IFavItem {
   img?: string;
   title: string;
   description: string;
-  lngLat: [number, number];
+  coordinates: [number, number];
 }
 
-export interface IFavPlace {
-  id: string;
+export interface IAddFavPlace {
   title: string;
   description: string;
   img: string;
   coordinates: [number, number];
 }
-export interface IAddFavPlace extends Omit<IFavPlace, keyof 'id'> {}
+export interface IFavPlace extends IAddFavPlace {
+  id: number;
+}
+
 export interface IDeleteFavPlace {
   data: Pick<IFavPlace, 'id'>;
 }
