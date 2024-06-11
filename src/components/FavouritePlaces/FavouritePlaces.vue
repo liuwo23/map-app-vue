@@ -12,7 +12,7 @@
       :description="place.description"
       :img="place.img"
       :isActive="place.id === activeId"
-      @click="emit('place-clicked',place.id)"
+      @click="emit('place-clicked', place.id)"
       @edit="openEditModal"
     />
 

@@ -5,13 +5,25 @@ import IButton from '@/components/Button/IButton.vue';
 import IModal from '@/components/IModal/IModal.vue';
 import MarkerIcon from '@/components/icons/MarkerIcon.vue';
 import fallbackImage from '../../assets/img/ukr.png';
-import { defineProps } from 'vue';
+import { defineProps, ref, type Ref } from 'vue';
+import type { IAddFavPlace } from '../../interfaces/IFavItem';
 
 const props = defineProps<{
   isOpen: boolean;
 }>();
 
 const emit = defineEmits(['close']);
+const formData: Ref<IAddFavPlace> = ref({
+  id: '',
+  title: '',
+  description: '',
+  img: '',
+  coordinates: null
+});
+
+const handleChangeImg = (url: string) => {
+  formData.value.img = url;
+};
 </script>
 
 <template>
@@ -26,21 +38,21 @@ const emit = defineEmits(['close']);
           <div class="w-5/12">
             <img
               class="w-full h-[276px] object-cover rounded-md"
-              :src="fallbackImage"
+              :src="formData.img || fallbackImage"
               alt="place img"
             />
           </div>
 
           <div class="w-7/12">
-            <IInput label="Локація" />
+            <IInput label="Локація" v-model="formData.title" />
             <div class="mt-4">
-              <IInput label="Опис" type="textarea" />
+              <IInput label="Опис" type="textarea" v-model="formData.description" />
             </div>
             <IButton class="mt-10 w-full" variant="gradient">Зберегти</IButton>
           </div>
         </div>
 
-        <InputImage class="mt-3">
+        <InputImage class="mt-3" @uploaded="handleChangeImg">
           <span class="text-xs">Натисніть тут, щоб додати інше фото</span>
         </InputImage>
       </form>

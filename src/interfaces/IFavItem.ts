@@ -10,7 +10,7 @@ export interface IAddFavPlace {
   title: string;
   description: string;
   img: string;
-  coordinates: [number, number];
+  coordinates: [number, number] | null;
 }
 export interface IFavPlace extends IAddFavPlace {
   id: string;

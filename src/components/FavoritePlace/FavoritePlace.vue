@@ -7,10 +7,10 @@
           <h2 class="font-bold text-sm text-[#2C2C2C]">{{ props.title }}</h2>
           <div class="flex gap-2">
             <FavouritePlaceIconButton @click="emit('edit')">
-              <EditIcon />
+              <EditIcon class="hover:stroke-accent transition-colors ease-in-out" />
             </FavouritePlaceIconButton>
             <FavouritePlaceIconButton @click="emit('delete')">
-              <DeleteIcon />
+              <DeleteIcon class="hover:stroke-accent transition-colors ease-in-out" />
             </FavouritePlaceIconButton>
           </div>
         </div>

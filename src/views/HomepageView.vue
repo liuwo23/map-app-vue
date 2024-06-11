@@ -30,12 +30,12 @@
         :lngLat="place.coordinates"
         anchor="bottom"
       >
-        <button @click="changeActiveID(place.id)">
-          <MarkerIcon class="h-8 w-8" />
+        <button @click.stop="changeActiveID(place.id)">
+          <MarkerIcon class="h-8 w-8" :is-active="true" />
         </button>
       </MapboxMarker>
       <MapboxMarker v-if="mapMarkerLngLat" :lngLat="mapMarkerLngLat" anchor="bottom">
-        <MarkerIcon class="h-8 w-8" />
+        <MarkerIcon class="h-8 w-8" :is-active="false" />
       </MapboxMarker>
     </MapboxMap>
   </div>
