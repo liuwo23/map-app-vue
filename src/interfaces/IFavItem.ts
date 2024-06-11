@@ -3,14 +3,14 @@ export default interface IFavItem {
   img?: string;
   title: string;
   description: string;
-  coordinates: [number, number];
+  coordinates: [number, number] | null;
 }
 
 export interface IAddFavPlace {
   title: string;
   description: string;
   img: string;
-  coordinates: [number, number] | null;
+  coordinates: [number, number];
 }
 export interface IFavPlace extends IAddFavPlace {
   id: string;

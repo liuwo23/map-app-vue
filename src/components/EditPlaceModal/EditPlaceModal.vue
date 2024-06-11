@@ -5,15 +5,16 @@ import IButton from '@/components/Button/IButton.vue';
 import IModal from '@/components/IModal/IModal.vue';
 import MarkerIcon from '@/components/icons/MarkerIcon.vue';
 import fallbackImage from '../../assets/img/ukr.png';
-import { defineProps, ref, type Ref } from 'vue';
-import type { IAddFavPlace } from '../../interfaces/IFavItem';
+import { defineProps, ref, type Ref, watch } from 'vue';
+import type IFavItem from '../../interfaces/IFavItem';
 
 const props = defineProps<{
   isOpen: boolean;
+  place: IFavItem | undefined;
 }>();
 
 const emit = defineEmits(['close']);
-const formData: Ref<IAddFavPlace> = ref({
+const formData: Ref<IFavItem> = ref({
   id: '',
   title: '',
   description: '',
@@ -24,13 +25,24 @@ const formData: Ref<IAddFavPlace> = ref({
 const handleChangeImg = (url: string) => {
   formData.value.img = url;
 };
+
+watch(
+  () => props.place,
+  () => {
+   if(props.place) {
+     formData.value = {
+       ...props.place
+     };
+   }
+  }
+);
 </script>
 
-<template>
-  <IModal v-if="props.isOpen" @close="emit('close')">
+<template >
+  <IModal v-if="props.isOpen && props.place"  @close="emit('close')">
     <div class="w-[750px]">
       <div class="flex gap-2 items-center mb-10">
-        <MarkerIcon height="18" width="18" />
+        <MarkerIcon is-active height="18" width="18" />
         <span class="font-bold text-base">Редагувати маркер</span>
       </div>
       <form>
