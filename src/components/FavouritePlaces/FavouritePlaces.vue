@@ -17,30 +17,57 @@
     />
 
     <IButton @click="emit('create')" variant="gradient" class="w-full mt-10">Додати маркер</IButton>
-    <EditPlaceModal :place="selectedItem" :is-open="isEditModalOpen" @close="closeEditModal" />
+    <EditPlaceModal
+      :place="selectedItem"
+      :is-open="isEditModalOpen"
+      @close="closeEditModal"
+      @submit="handleSubmit"
+      :is-loading="isLoading"
+    />
   </div>
 </template>
 <script setup lang="ts">
+import { defineProps, ref, type Ref, computed } from 'vue';
 import FavoritePlace from '@/components/FavoritePlace/FavoritePlace.vue';
 import IButton from '@/components/Button/IButton.vue';
 import EditPlaceModal from '@/components/EditPlaceModal/EditPlaceModal.vue';
-import type IFavItem from '../../interfaces/IFavItem';
+import type {IFavItem, IFavPlace } from '../../interfaces/IFavItem';
 import { useModal } from '../../composables/useModal';
-import { defineProps, ref, type Ref, computed } from 'vue';
+import { useMutation } from '../../composables/useMutation';
+import { updateFavouritePlace } from '../../api/favouritePlaces';
 
 const props = defineProps<{
   items: IFavItem[];
   activeId: null | string;
 }>();
 
-const emit = defineEmits(['place-clicked', 'create']);
+const emit = defineEmits(['place-clicked', 'create', 'updated']);
 
-const { isOpen: isEditModalOpen, openModal: openEditModal, closeModal: closeEditModal } = useModal();
-const selectedId:Ref<string> = ref('');
-const selectedItem = computed<IFavItem | undefined>(() => props.items.find(place => place.id === selectedId.value));
-const handleEditPlace = (id:string) => {
+const {
+  isOpen: isEditModalOpen,
+  openModal: openEditModal,
+  closeModal: closeEditModal
+} = useModal();
+
+const { mutation: updatePlace, isLoading } = useMutation({
+  mutationFn: (formData: IFavPlace) => updateFavouritePlace(formData),
+  onSuccess: () => {
+    closeEditModal();
+    emit('updated')
+  }
+});
+
+const selectedId: Ref<string> = ref('');
+const selectedItem = computed<IFavItem | undefined>(() =>
+  props.items.find((place) => place.id === selectedId.value)
+);
+const handleEditPlace = (id: string) => {
   selectedId.value = id;
-  openEditModal()
-}
+  openEditModal();
+};
+
+const handleSubmit = (formData: IFavPlace) => {
+  updatePlace(formData);
+};
 </script>
 <style scoped></style>

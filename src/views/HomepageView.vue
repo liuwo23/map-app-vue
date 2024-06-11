@@ -5,6 +5,7 @@
       :activeId="activeID"
       @place-clicked="changePlace"
       @create="openModal"
+      @updated="getPlaces"
     />
     <CreateNewPlaceModal
       :has-error="!!error"
@@ -42,7 +43,7 @@
 </template>
 <script setup lang="ts">
 import { type Map, MapMouseEvent } from 'mapbox-gl';
-import type IFavItem from '../interfaces/IFavItem';
+import type {IFavItem} from '../interfaces/IFavItem';
 import type { IFormData } from '../interfaces/IModalFormData';
 import type { IAddFavPlace } from '../interfaces/IFavItem';
 import { onMounted, ref, type Ref, computed } from 'vue';

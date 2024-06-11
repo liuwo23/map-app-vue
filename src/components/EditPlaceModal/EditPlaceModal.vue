@@ -1,19 +1,21 @@
 <script setup lang="ts">
+import { defineProps, ref, type Ref, watch } from 'vue';
+import type {IFavItem} from '../../interfaces/IFavItem';
 import IInput from '@/components/IInput/IInput.vue';
 import InputImage from '@/components/InputImage/InputImage.vue';
 import IButton from '@/components/Button/IButton.vue';
 import IModal from '@/components/IModal/IModal.vue';
 import MarkerIcon from '@/components/icons/MarkerIcon.vue';
 import fallbackImage from '../../assets/img/ukr.png';
-import { defineProps, ref, type Ref, watch } from 'vue';
-import type IFavItem from '../../interfaces/IFavItem';
+
 
 const props = defineProps<{
   isOpen: boolean;
   place: IFavItem | undefined;
+  isLoading: boolean;
 }>();
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(['close', 'submit']);
 const formData: Ref<IFavItem> = ref({
   id: '',
   title: '',
@@ -45,7 +47,7 @@ watch(
         <MarkerIcon is-active height="18" width="18" />
         <span class="font-bold text-base">Редагувати маркер</span>
       </div>
-      <form>
+      <form @submit.prevent="emit('submit', formData)">
         <div class="flex gap-5">
           <div class="w-5/12">
             <img
@@ -60,7 +62,9 @@ watch(
             <div class="mt-4">
               <IInput label="Опис" type="textarea" v-model="formData.description" />
             </div>
-            <IButton class="mt-10 w-full" variant="gradient">Зберегти</IButton>
+            <IButton class="mt-10 w-full" variant="gradient" :is-loading="props.isLoading"
+              >Зберегти</IButton
+            >
           </div>
         </div>
 

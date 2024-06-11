@@ -1,4 +1,4 @@
-export default interface IFavItem {
+export interface IFavItem {
   id: string;
   img?: string;
   title: string;
