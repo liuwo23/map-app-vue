@@ -26,7 +26,7 @@ import IButton from '@/components/Button/IButton.vue';
 import EditPlaceModal from '@/components/EditPlaceModal/EditPlaceModal.vue';
 import type IFavItem from '../../interfaces/IFavItem';
 import { useModal } from '../../composables/useModal';
-import { defineProps, ref, type Ref,  } from 'vue';
+import { defineProps, ref, type Ref, computed } from 'vue';
 
 const props = defineProps<{
   items: IFavItem[];
@@ -37,10 +37,9 @@ const emit = defineEmits(['place-clicked', 'create']);
 
 const { isOpen: isEditModalOpen, openModal: openEditModal, closeModal: closeEditModal } = useModal();
 const selectedId:Ref<string> = ref('');
-const selectedItem: Ref<IFavItem | undefined> = ref(undefined);
+const selectedItem = computed<IFavItem | undefined>(() => props.items.find(place => place.id === selectedId.value));
 const handleEditPlace = (id:string) => {
   selectedId.value = id;
-  selectedItem.value =  props.items.find(place => place.id === selectedId.value);
   openEditModal()
 }
 </script>

@@ -29,17 +29,17 @@ const handleChangeImg = (url: string) => {
 watch(
   () => props.place,
   () => {
-   if(props.place) {
-     formData.value = {
-       ...props.place
-     };
-   }
+    if (props.place) {
+      formData.value = {
+        ...props.place
+      };
+    }
   }
 );
 </script>
 
-<template >
-  <IModal v-if="props.isOpen && props.place"  @close="emit('close')">
+<template>
+  <IModal v-if="props.isOpen && props.place" @close="emit('close')">
     <div class="w-[750px]">
       <div class="flex gap-2 items-center mb-10">
         <MarkerIcon is-active height="18" width="18" />
