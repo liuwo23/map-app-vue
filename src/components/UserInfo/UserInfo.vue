@@ -4,7 +4,11 @@ import UserIcon from '@/components/icons/UserIcon.vue';
 import { useMutation } from '../../composables/useMutation';
 import { authService } from '../../api/authService';
 
-const { data: userInfo, mutation: getUser } = useMutation({
+const {
+  data: userInfo,
+  mutation: getUser,
+  isLoading
+} = useMutation({
   mutationFn: () => authService.getUserInfo()
 });
 
@@ -20,7 +24,8 @@ onMounted(() => {
     <div class="w-10 h-10 flex items-center justify-center rounded-full color-primary bg-primary">
       <UserIcon class="text-white" />
     </div>
-    <span v-if="userInfo">{{ userInfo.data.name }}</span>
+    <span v-if="isLoading">Завантажуємо...</span>
+    <span v-if="userInfo && !isLoading">{{ userInfo.name }}</span>
   </div>
 </template>
 
