@@ -79,7 +79,7 @@ const {
   isLoading: isDeleting,
   error: deleteError
 } = useMutation({
-  mutationFn: (id:string) => deleteFavouritePlaces(id),
+  mutationFn: (id: string) => deleteFavouritePlaces(id),
   onSuccess: () => {
     closeDeleteModal();
     idOfDeletedItem.value = '';

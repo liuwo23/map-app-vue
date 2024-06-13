@@ -1,15 +1,18 @@
 <template>
   <div class="bg-white h-full w-[400px] shrink-0 overflow-auto pb-10">
+    <UserInfo />
     <div v-if="isPlacesLoading">
       <h1 class="uppercase text-red-500 p-3">Завантажуємо...</h1>
     </div>
-    <FavouritePlaces v-else
+    <FavouritePlaces
+      v-else
       :items="favoritePlaces"
       :activeId="activeID"
       @place-clicked="changePlace"
       @create="openModal"
       @updated="getPlaces"
     />
+    <LogoutButton class="mt-10" />
     <CreateNewPlaceModal
       :has-error="!!error"
       :is-loading="isAddingPlace"
@@ -58,6 +61,8 @@ import { useMutation } from '../composables/useMutation';
 import FavouritePlaces from '@/components/FavouritePlaces/FavouritePlaces.vue';
 import MarkerIcon from '@/components/icons/MarkerIcon.vue';
 import CreateNewPlaceModal from '@/components/CreateNewPlaceModal/CreateNewPlaceModal.vue';
+import UserInfo from '@/components/UserInfo/UserInfo.vue';
+import LogoutButton from '@/components/LogoutButton/LogoutButton.vue';
 
 const { isOpen, closeModal, openModal } = useModal();
 const {
@@ -73,7 +78,11 @@ const {
   }
 });
 
-const { data, mutation: getPlaces, isLoading: isPlacesLoading } = useMutation({
+const {
+  data,
+  mutation: getPlaces,
+  isLoading: isPlacesLoading
+} = useMutation({
   mutationFn: () => getFavouritePlaces()
 });
 

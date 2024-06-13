@@ -20,16 +20,16 @@ clientFetch.interceptors.request.use((request) => {
 clientFetch.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const errorCode = error.response.statusCode;
-    if (errorCode === 401) {
-      try {
+    try {
+      const errorCode = error.response.statusCode;
+      if (errorCode === 401) {
         await authService.refreshUserToken();
-      } catch (e) {
-        await router.push('/auth/login');
-        return Promise.reject(e);
       }
+    } catch (e) {
+      await router.push('/auth/login');
+      return Promise.reject(e);
     }
 
-    return Promise.reject();
+    return Promise.reject(error);
   }
 );

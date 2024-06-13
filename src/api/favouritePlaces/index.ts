@@ -19,6 +19,6 @@ export const addFavouritePlace = (body: IAddFavPlace) => {
 export const updateFavouritePlace = (body: IFavPlace) => {
   return clientFetch.put(BASE_PLACES_URL, body);
 };
-export const deleteFavouritePlaces = (id:string) => {
+export const deleteFavouritePlaces = (id: string) => {
   return clientFetch.delete(`${BASE_PLACES_URL}/${id}`);
 };
