@@ -6,10 +6,10 @@
         <div class="flex justify-between items-center mb-2">
           <h2 class="font-bold text-sm text-[#2C2C2C]">{{ props.title }}</h2>
           <div class="flex gap-2">
-            <FavouritePlaceIconButton @click="emit('edit')">
+            <FavouritePlaceIconButton @click.stop="emit('edit')">
               <EditIcon class="hover:stroke-accent transition-colors ease-in-out" />
             </FavouritePlaceIconButton>
-            <FavouritePlaceIconButton @click="emit('delete')">
+            <FavouritePlaceIconButton @click.stop="emit('delete')">
               <DeleteIcon class="hover:stroke-accent transition-colors ease-in-out" />
             </FavouritePlaceIconButton>
           </div>

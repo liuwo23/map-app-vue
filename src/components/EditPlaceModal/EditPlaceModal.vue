@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { defineProps, ref, type Ref, watch } from 'vue';
-import type {IFavItem} from '../../interfaces/IFavItem';
+import type { IFavItem } from '../../interfaces/IFavItem';
 import IInput from '@/components/IInput/IInput.vue';
 import InputImage from '@/components/InputImage/InputImage.vue';
 import IButton from '@/components/Button/IButton.vue';
 import IModal from '@/components/IModal/IModal.vue';
 import MarkerIcon from '@/components/icons/MarkerIcon.vue';
 import fallbackImage from '../../assets/img/ukr.png';
-
 
 const props = defineProps<{
   isOpen: boolean;

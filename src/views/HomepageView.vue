@@ -1,6 +1,9 @@
 <template>
   <div class="bg-white h-full w-[400px] shrink-0 overflow-auto pb-10">
-    <FavouritePlaces
+    <div v-if="isPlacesLoading">
+      <h1 class="uppercase text-red-500 p-3">Завантажуємо...</h1>
+    </div>
+    <FavouritePlaces v-else
       :items="favoritePlaces"
       :activeId="activeID"
       @place-clicked="changePlace"
@@ -43,7 +46,7 @@
 </template>
 <script setup lang="ts">
 import { type Map, MapMouseEvent } from 'mapbox-gl';
-import type {IFavItem} from '../interfaces/IFavItem';
+import type { IFavItem } from '../interfaces/IFavItem';
 import type { IFormData } from '../interfaces/IModalFormData';
 import type { IAddFavPlace } from '../interfaces/IFavItem';
 import { onMounted, ref, type Ref, computed } from 'vue';
@@ -70,7 +73,7 @@ const {
   }
 });
 
-const { data, mutation: getPlaces } = useMutation({
+const { data, mutation: getPlaces, isLoading: isPlacesLoading } = useMutation({
   mutationFn: () => getFavouritePlaces()
 });
 
