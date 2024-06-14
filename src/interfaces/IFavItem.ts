@@ -15,7 +15,3 @@ export interface IAddFavPlace {
 export interface IFavPlace extends IAddFavPlace {
   id: string;
 }
-
-export interface IDeleteFavPlace {
-  data: Pick<IFavPlace, 'id'>;
-}

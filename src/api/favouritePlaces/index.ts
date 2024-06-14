@@ -1,5 +1,5 @@
 import { clientFetch } from '../clientFetch';
-import type { IFavPlace, IAddFavPlace, IDeleteFavPlace } from '../../interfaces/IFavItem';
+import type { IFavPlace, IAddFavPlace } from '../../interfaces/IFavItem';
 const BASE_PLACES_URL = 'points';
 
 interface IServerFavPlace extends IFavPlace {

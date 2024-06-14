@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
+import { authService } from '../api/authService';
 
 const GreetingPage = () => import('../views/GreetingView.vue');
 const AuthPage = () => import('../views/AuthView.vue');
@@ -10,11 +11,13 @@ const RegistrationPage = () => import('../views/RegistrationView.vue');
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    component: GreetingPage
+    component: GreetingPage,
+    name: 'greeting'
   },
   {
     path: '/map',
-    component: HomepagePage
+    component: HomepagePage,
+    name: 'homepage'
   },
   {
     path: '/auth',
@@ -23,11 +26,13 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'login',
-        component: LoginPage
+        component: LoginPage,
+        name: 'login'
       },
       {
         path: 'registration',
-        component: RegistrationPage
+        component: RegistrationPage,
+        name: 'registration'
       }
     ]
   }
@@ -36,4 +41,16 @@ const routes: Array<RouteRecordRaw> = [
 export const router = createRouter({
   history: createWebHistory(),
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  const authRoutes: string[] = ['login', 'registration'];
+
+  if (authService.isLoggedIn() && authRoutes.includes(<string>to.name)) {
+    next({ name: 'homepage' });
+  } else if (!authRoutes.includes(<string>to.name) && !authService.isLoggedIn()) {
+    next({ name: 'login' });
+  } else {
+    next();
+  }
 });
