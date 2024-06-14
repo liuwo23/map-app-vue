@@ -44,12 +44,12 @@ export const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const authRoutes: string[] = ['login', 'registration'];
+  const authRoutes: string[] = ['login', 'registration', 'greeting'];
 
   if (authService.isLoggedIn() && authRoutes.includes(<string>to.name)) {
     next({ name: 'homepage' });
   } else if (!authRoutes.includes(<string>to.name) && !authService.isLoggedIn()) {
-    next({ name: 'login' });
+    next({ name: 'greeting' });
   } else {
     next();
   }

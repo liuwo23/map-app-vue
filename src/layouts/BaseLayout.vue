@@ -6,7 +6,7 @@
       <slot></slot>
     </div>
   </section>
-  <section class="flex-1">
+  <section class="hidden md:block md:flex-1">
     <img class="h-full w-full object-cover" src="../assets/img/static-map.png" alt="" />
   </section>
 </template>
