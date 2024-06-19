@@ -17,7 +17,6 @@ export const useMutation = ({ mutationFn, onSuccess, onError }: IMutationActions
       error.value = null;
       onSuccess?.(data.value);
     } catch (e) {
-      console.error('useMutation caught error:', e);
       error.value = e;
       onError?.(error.value);
     } finally {

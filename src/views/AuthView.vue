@@ -5,38 +5,41 @@ import BaseLayout from '@/layouts/BaseLayout.vue';
 
 <template>
   <BaseLayout>
-    <section class="w-full bg-white px-2 py-5 md:p-10 rounded-lg md:rounded-2xl">
-      <div class="flex items-center justify-center gap-10 mb-10">
-        <RouterLink to="registration" class="text-gray" exact-active-class="text-primary"
-          >Створити аккаунт
-        </RouterLink>
-        <RouterLink to="login" class="text-gray" exact-active-class="text-primary"
-          >Увійти
-        </RouterLink>
-      </div>
+    <router-view v-slot="{ Component, route }">
+      <Transition name="fade" mode="out-in">
+        <div :key="route.name">
+          <section class="w-full bg-white px-2 py-5 md:p-10 rounded-lg md:rounded-2xl">
+            <div class="flex items-center justify-center gap-10 mb-10">
+              <RouterLink to="registration" class="text-gray" exact-active-class="text-primary"
+                >Створити аккаунт
+              </RouterLink>
+              <RouterLink to="login" class="text-gray" exact-active-class="text-primary"
+                >Увійти
+              </RouterLink>
+            </div>
 
-      <router-view v-slot="{ Component, route }">
-        <Transition name="fade" mode="out-in">
-          <div :key="route.name">
             <component :is="Component"></component>
-          </div>
-        </Transition>
-      </router-view>
-    </section>
+          </section>
+        </div>
+      </Transition>
+    </router-view>
   </BaseLayout>
 </template>
 
 <style scoped>
 .fade-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.5s ease-out;
 }
 .fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: opacity 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
-.fade-enter-from,
+.fade-enter-from {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+
 .fade-leave-to {
-  transform: translateX(20px);
   opacity: 0;
 }
 </style>

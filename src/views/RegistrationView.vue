@@ -1,6 +1,6 @@
 <template>
   <RegistrationForm @submit="handleRegisterUser" :isLoading="isLoading" />
-  <p v-if="error" class="text-sm text-red-500 mt-2">{{ error.message }}</p>
+  <p v-if="error" class="text-sm text-red-500 mt-2">Щось пішло не так! перевірте введені дані.</p>
 </template>
 
 <script setup lang="ts">

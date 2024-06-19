@@ -1,5 +1,5 @@
 <template>
-  <main class="flex h-screen w-full">
+  <main class="flex h-screen w-full bg-accent">
     <RouterView />
   </main>
 </template>

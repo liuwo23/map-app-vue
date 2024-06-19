@@ -17,10 +17,11 @@ const { mutation: logoutUser, isLoading } = useMutation({
 <template>
   <IButton
     :is-loading="isLoading"
-    class="flex gap-2 items-center px-6 text-black"
+    class="flex gap-2 items-center px-6 !text-black stroke-black bg-transparent hover:!text-accent hover:stroke-accent transition-colors ease-in-out"
     @click="logoutUser"
-    >Вихід <LogoutIcon
-  /></IButton>
+    >Вихід
+    <LogoutIcon />
+  </IButton>
 </template>
 
 <style scoped></style>
