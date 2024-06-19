@@ -1,5 +1,5 @@
 <template>
-  <LoginForm @submit="handleLoginUser" :is-loading="isLoading" />
+  <LoginForm @submit="handleLoginUser" :is-loading="isLoading" :error="!!error" />
   <p v-if="error" class="text-sm text-red-500 mt-2">Щось пішло не так! перевірте введені дані.</p>
 </template>
 

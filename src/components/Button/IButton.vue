@@ -5,7 +5,7 @@
     :to="link"
     class="bg-accent rounded-xl py-3 px-10 text-white font-bold -tracking-wide"
   >
-    <template v-if="props.isLoading"> Loading... </template>
+    <template v-if="props.isLoading"><LoadingText text="Завантаження" /> </template>
     <template v-else>
       <slot></slot>
     </template>
@@ -15,6 +15,7 @@
 import { defineProps, computed } from 'vue';
 import { RouterLink } from 'vue-router';
 import type { _RouterLinkI } from 'vue-router';
+import LoadingText from '@/components/LoadingText/LoadingText.vue';
 
 const props = defineProps<{
   variant?: string;

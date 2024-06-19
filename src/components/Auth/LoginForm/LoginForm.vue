@@ -5,8 +5,15 @@
       v-model="loginData.email"
       label="Електронна пошта"
       placeholder="test@gmail.com"
+      :error="error"
     />
-    <IInput v-model="loginData.password" label="Пароль" type="password" placeholder="***********" />
+    <IInput
+      v-model="loginData.password"
+      label="Пароль"
+      type="password"
+      placeholder="***********"
+      :error="error"
+    />
     <IButton :isLoading="props.isLoading" class="mt-10 w-full" variant="gradient" type="submit"
       >Увійти</IButton
     >
@@ -22,6 +29,7 @@ import IButton from '@/components/Button/IButton.vue';
 import { reactive, toRaw } from 'vue';
 const props = defineProps<{
   isLoading: boolean;
+  error: boolean;
 }>();
 const emit = defineEmits(['submit']);
 const loginData: ILogin = reactive({

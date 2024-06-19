@@ -6,6 +6,7 @@ const props = defineProps<{
   placeholder?: string;
   type?: string;
   modelValue: string;
+  error: boolean;
 }>();
 defineOptions({
   inheritAttrs: false
@@ -34,7 +35,7 @@ const componentName = computed<string>(() => {
       <component
         :is="componentName"
         rows="3"
-        :class="inputStyles"
+        :class="error ? inputStyles + ' !border-red-500' : inputStyles"
         v-bind="{ ...$props, ...$attrs }"
         :value="modelValue"
         @input="emit('update:modelValue', $event.target.value)"

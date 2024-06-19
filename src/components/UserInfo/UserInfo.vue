@@ -3,6 +3,7 @@ import { onMounted } from 'vue';
 import UserIcon from '@/components/icons/UserIcon.vue';
 import { useMutation } from '../../composables/useMutation';
 import { authService } from '../../api/authService';
+import LoadingText from '@/components/LoadingText/LoadingText.vue';
 
 const {
   data: userInfo,
@@ -24,8 +25,8 @@ onMounted(() => {
     <div class="w-10 h-10 flex items-center justify-center rounded-full color-primary bg-primary">
       <UserIcon class="text-white" />
     </div>
-    <span v-if="isLoading">Завантажуємо...</span>
-    <span v-if="userInfo && !isLoading">{{ userInfo.name }}</span>
+    <span v-if="isLoading"><LoadingText text="Завантажуємо" /></span>
+    <span v-if="userInfo && !isLoading" class="uppercase">{{ userInfo.name }}</span>
   </div>
 </template>
 

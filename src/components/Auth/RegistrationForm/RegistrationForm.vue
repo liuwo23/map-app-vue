@@ -1,13 +1,14 @@
 <template>
   <form @submit.prevent="emit('submit', toRaw(userData))">
-    <IInput v-model="userData.name" class="mb-4" label="Повне імʼя" />
+    <IInput v-model="userData.name" class="mb-4" label="Повне імʼя" :error="error" />
     <IInput
       v-model="userData.email"
       class="mb-4"
       label="Електронна пошта"
       placeholder="test@gmail.com"
+      :error="error"
     />
-    <IInput v-model="userData.password" label="Пароль" type="password" />
+    <IInput v-model="userData.password" label="Пароль" type="password" :error="error" />
     <IButton :isLoading="props.isLoading" class="mt-10 w-full" variant="gradient" type="submit"
       >Створити аккаунт</IButton
     >
@@ -20,6 +21,7 @@ import { reactive, toRaw } from 'vue';
 
 const props = defineProps<{
   isLoading: boolean;
+  error: boolean;
 }>();
 interface IRegister {
   name: string;

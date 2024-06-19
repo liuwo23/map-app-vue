@@ -5,7 +5,7 @@ import MarkerIcon from '@/components/icons/MarkerIcon.vue';
 import IInput from '@/components/IInput/IInput.vue';
 import InputImage from '@/components/InputImage/InputImage.vue';
 import IButton from '@/components/Button/IButton.vue';
-import { reactive, computed, defineProps } from 'vue';
+import { reactive, computed, defineProps, Teleport } from 'vue';
 
 defineProps<{
   isOpen: boolean;
@@ -35,31 +35,33 @@ const resetFormData = () => {
 </script>
 
 <template>
-  <IModal v-if="isOpen" @close="emit('close')">
-    <form @submit.prevent="emit('submit', formData, resetFormData)" class="min-w-[420px]">
-      <div class="mb-10 font-bold text-center flex gap-1 items-center justify-center">
-        <MarkerIcon />
-        Додати маркери
+  <component :is="Teleport" to="body">
+    <IModal :is-show="isOpen" @close="emit('close')">
+      <form @submit.prevent="emit('submit', formData, resetFormData)" class="min-w-[420px]">
+        <div class="mb-10 font-bold text-center flex gap-1 items-center justify-center">
+          <MarkerIcon />
+          Додати маркери
+        </div>
+        <IInput v-model="formData.title" class="mb-4" label="Локація" />
+        <IInput v-model="formData.description" class="mb-2" label="Опис" type="textarea" />
+        <div class="mb-10 flex gap-2 items-center">
+          <img
+            class="block w-8 h-8 object-cover"
+            v-if="formData.img"
+            :src="formData.img"
+            alt="avatar"
+          />
+          <InputImage @uploaded="handleUploaded">{{ uploadText }}</InputImage>
+        </div>
+        <IButton :is-loading="isLoading" variant="gradient" class="w-full" type="submit"
+          >Додати</IButton
+        >
+      </form>
+      <div v-if="hasError">
+        <p class="text-red-500 text-sm">Щось пішло не так, перевірте ваші дані!</p>
       </div>
-      <IInput v-model="formData.title" class="mb-4" label="Локація" />
-      <IInput v-model="formData.description" class="mb-2" label="Опис" type="textarea" />
-      <div class="mb-10 flex gap-2 items-center">
-        <img
-          class="block w-8 h-8 object-cover"
-          v-if="formData.img"
-          :src="formData.img"
-          alt="avatar"
-        />
-        <InputImage @uploaded="handleUploaded">{{ uploadText }}</InputImage>
-      </div>
-      <IButton :is-loading="isLoading" variant="gradient" class="w-full" type="submit"
-        >Додати</IButton
-      >
-    </form>
-    <div v-if="hasError">
-      <p class="text-red-500 text-sm">Щось пішло не так, перевірте ваші дані!</p>
-    </div>
-  </IModal>
+    </IModal>
+  </component>
 </template>
 
 <style scoped></style>

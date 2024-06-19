@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white h-full w-[400px] shrink-0 overflow-auto pb-10">
+  <div class="bg-white min-h-screen h-full w-[400px] shrink-0 overflow-auto pb-10">
     <UserInfo />
     <div v-if="isPlacesLoading">
       <h1 class="uppercase text-red-500 p-3">Завантажуємо...</h1>
@@ -12,7 +12,7 @@
       @create="openModal"
       @updated="getPlaces"
     />
-    <LogoutButton class="mt-10" />
+    <LogoutButton class="mt-auto block" />
     <CreateNewPlaceModal
       :has-error="!!error"
       :is-loading="isAddingPlace"
