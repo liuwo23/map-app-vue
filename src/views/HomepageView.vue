@@ -1,28 +1,29 @@
 <template>
-  <div class="bg-white min-h-screen h-full w-[400px] shrink-0 overflow-auto pb-10">
-    <UserInfo />
+  <div class="bg-white h-[350px] w-full lg:min-h-screen lg:w-[400px] shrink-0 pb-10">
+    <div class="w-full h-[340px] lg:h-auto overflow-auto">
+      <UserInfo />
+      <div v-if="isPlacesLoading">
+        <FavoritePlacesSkeleton />
+      </div>
+      <FavouritePlaces
+        v-else
+        :items="favoritePlaces"
+        :activeId="activeID"
+        @place-clicked="changePlace"
+        @create="openModal"
+        @updated="getPlaces"
+        :is-button-disabled="isButtonDisabled"
+      />
 
-    <div v-if="isPlacesLoading">
-      <FavoritePlacesSkeleton />
+      <LogoutButton class="mt-10 block" />
+      <CreateNewPlaceModal
+        :has-error="!!error"
+        :is-loading="isAddingPlace"
+        :is-open="isOpen"
+        @close="closeModal"
+        @submit="handleAddPlace"
+      />
     </div>
-    <FavouritePlaces
-      v-else
-      :items="favoritePlaces"
-      :activeId="activeID"
-      @place-clicked="changePlace"
-      @create="openModal"
-      @updated="getPlaces"
-      :is-button-disabled="isButtonDisabled"
-    />
-
-    <LogoutButton class="mt-10 block" />
-    <CreateNewPlaceModal
-      :has-error="!!error"
-      :is-loading="isAddingPlace"
-      :is-open="isOpen"
-      @close="closeModal"
-      @submit="handleAddPlace"
-    />
   </div>
   <div class="w-full h-full flex items-center justify-center text-6xl">
     <MapboxMap
