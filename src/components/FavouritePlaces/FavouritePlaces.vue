@@ -17,7 +17,13 @@
       @delete="handleOpenConformationModal(place.id)"
     />
 
-    <IButton @click="emit('create')" variant="gradient" class="w-full mt-10">Додати маркер</IButton>
+    <IButton
+      :disabled="isButtonDisabled"
+      @click="emit('create')"
+      variant="gradient"
+      class="w-full mt-10 disabled:from-zinc-200 disabled:to-zinc-200"
+      >Додати маркер</IButton
+    >
     <EditPlaceModal
       :place="selectedItem"
       :is-open="isEditModalOpen"
@@ -49,6 +55,7 @@ import EditPlaceModal from '@/components/EditPlaceModal/EditPlaceModal.vue';
 const props = defineProps<{
   items: IFavItem[];
   activeId: null | string;
+  isButtonDisabled: boolean;
 }>();
 
 const emit = defineEmits(['place-clicked', 'create', 'updated']);

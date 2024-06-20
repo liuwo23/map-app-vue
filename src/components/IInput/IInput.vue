@@ -17,7 +17,7 @@ const emit = defineEmits(['update:modelValue']);
 const showPassword = ref(false);
 
 const baseStyles =
-  'w-full text-sm rounded-[4px] border-[#eaeaea] border-[1px] py-2 px-3 focus:outline-primary';
+  'w-full text-sm rounded-[4px] border-light-gray border-[1px] py-2 px-3 focus:outline-primary';
 
 const isTextarea = computed<boolean>(() => {
   return props.type === 'textarea';
@@ -59,7 +59,7 @@ const getType = computed(() => {
         v-if="props.type === 'password'"
         class="absolute p-2 top-[25px] right-2"
         @click="showPassword = !showPassword"
-        :class="showPassword ? 'fill-accent' : 'fill-[#eaeaea]'"
+        :class="showPassword ? 'fill-accent' : 'fill-light-gray'"
       >
         <EyeIcon />
       </button>

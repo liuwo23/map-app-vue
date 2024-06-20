@@ -1,8 +1,9 @@
 <template>
   <div class="bg-white min-h-screen h-full w-[400px] shrink-0 overflow-auto pb-10">
     <UserInfo />
+
     <div v-if="isPlacesLoading">
-      <h1 class="uppercase text-red-500 p-3">Завантажуємо...</h1>
+      <FavoritePlacesSkeleton />
     </div>
     <FavouritePlaces
       v-else
@@ -11,8 +12,10 @@
       @place-clicked="changePlace"
       @create="openModal"
       @updated="getPlaces"
+      :is-button-disabled="isButtonDisabled"
     />
-    <LogoutButton class="mt-auto block" />
+
+    <LogoutButton class="mt-10 block" />
     <CreateNewPlaceModal
       :has-error="!!error"
       :is-loading="isAddingPlace"
@@ -63,6 +66,7 @@ import MarkerIcon from '@/components/icons/MarkerIcon.vue';
 import CreateNewPlaceModal from '@/components/CreateNewPlaceModal/CreateNewPlaceModal.vue';
 import UserInfo from '@/components/UserInfo/UserInfo.vue';
 import LogoutButton from '@/components/LogoutButton/LogoutButton.vue';
+import FavoritePlacesSkeleton from '@/components/FavoritePlacesSkeleton/FavoritePlacesSkeleton.vue';
 
 const { isOpen, closeModal, openModal } = useModal();
 const {
@@ -94,7 +98,7 @@ const activeID: Ref<null | string> = ref(null);
 const map: Ref<Map | null> = ref(null);
 
 const favoritePlaces: Ref<IFavItem[]> = computed(() => data.value ?? []);
-const isButtonDisabled = computed<boolean>(() => !!mapMarkerLngLat.value);
+const isButtonDisabled = computed<boolean>(() => !mapMarkerLngLat.value);
 
 const handleAddPlace = async (formData: IFormData, resetFormData: Function) => {
   try {
@@ -134,3 +138,4 @@ onMounted(() => {
   getPlaces();
 });
 </script>
+<style></style>

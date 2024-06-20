@@ -26,7 +26,7 @@ onMounted(() => {
       <UserIcon class="text-white" />
     </div>
     <span v-if="isLoading"><LoadingText text="Завантажуємо" /></span>
-    <span v-if="userInfo && !isLoading" class="uppercase">{{ userInfo.name }}</span>
+    <span v-if="userInfo && !isLoading" class="uppercase">{{ userInfo.data.name }}</span>
   </div>
 </template>
 
