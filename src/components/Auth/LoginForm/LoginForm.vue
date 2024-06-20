@@ -6,6 +6,7 @@
       label="Електронна пошта"
       placeholder="test@gmail.com"
       :error="error"
+      type="email"
     />
     <IInput
       v-model="loginData.password"

@@ -29,6 +29,16 @@ const inputStyles = computed<string>(() => {
 const componentName = computed<string>(() => {
   return isTextarea.value ? 'textarea' : 'input';
 });
+const getType = computed(() => {
+  if (props.type !== 'password') {
+    return props.type;
+  } else {
+    if (props.type === 'password' && showPassword.value) {
+      return 'text';
+    }
+    return 'password';
+  }
+});
 </script>
 
 <template>
@@ -41,7 +51,7 @@ const componentName = computed<string>(() => {
         :class="error ? inputStyles + ' !border-red-500' : inputStyles"
         v-bind="{ ...$props, ...$attrs }"
         :value="modelValue"
-        :type="showPassword && props.type !== 'textarea' ? 'text' : 'password'"
+        :type="getType"
         @input="emit('update:modelValue', $event.target.value)"
       />
       <button
@@ -49,7 +59,7 @@ const componentName = computed<string>(() => {
         v-if="props.type === 'password'"
         class="absolute p-2 top-[25px] right-2"
         @click="showPassword = !showPassword"
-        :class="showPassword ? 'fill-accent' : 'fill-inherit'"
+        :class="showPassword ? 'fill-accent' : 'fill-[#eaeaea]'"
       >
         <EyeIcon />
       </button>
