@@ -30,6 +30,7 @@
       @close="closeEditModal"
       @submit="handleSubmit"
       :is-loading="isEditModalLoading"
+      :is-error="!!errorUpdatePlace"
     />
     <ConfirmationModal
       :is-loading="isDeleting"
@@ -72,7 +73,11 @@ const {
   closeModal: closeDeleteModal
 } = useModal();
 
-const { mutation: updatePlace, isLoading: isEditModalLoading } = useMutation({
+const {
+  mutation: updatePlace,
+  isLoading: isEditModalLoading,
+  error: errorUpdatePlace
+} = useMutation({
   mutationFn: (formData: IFavPlace) => updateFavouritePlace(formData),
   onSuccess: () => {
     closeEditModal();

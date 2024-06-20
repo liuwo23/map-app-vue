@@ -42,8 +42,14 @@ const resetFormData = () => {
           <MarkerIcon />
           Додати маркери
         </div>
-        <IInput v-model="formData.title" class="mb-4" label="Локація" />
-        <IInput v-model="formData.description" class="mb-2" label="Опис" type="textarea" />
+        <IInput :error="hasError" v-model="formData.title" class="mb-4" label="Локація" />
+        <IInput
+          :error="hasError"
+          v-model="formData.description"
+          class="mb-2"
+          label="Опис"
+          type="textarea"
+        />
         <div class="mb-10 flex gap-2 items-center">
           <img
             class="block w-8 h-8 object-cover"

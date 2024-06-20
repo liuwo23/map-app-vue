@@ -12,6 +12,7 @@ const props = defineProps<{
   isOpen: boolean;
   place: IFavItem | undefined;
   isLoading: boolean;
+  isError: boolean;
 }>();
 
 const emit = defineEmits(['close', 'submit']);
@@ -41,7 +42,7 @@ watch(
 
 <template>
   <component :is="Teleport" to="body">
-    <IModal :is-show="props.isOpen && props.place" @close="emit('close')">
+    <IModal :is-show="props.isOpen" @close="emit('close')">
       <div class="w-[750px]">
         <div class="flex gap-2 items-center mb-10">
           <MarkerIcon is-active height="18" width="18" />
@@ -58,9 +59,14 @@ watch(
             </div>
 
             <div class="w-7/12">
-              <IInput label="Локація" v-model="formData.title" />
+              <IInput :error="isError" label="Локація" v-model="formData.title" type="text" />
               <div class="mt-4">
-                <IInput label="Опис" type="textarea" v-model="formData.description" />
+                <IInput
+                  :error="isError"
+                  label="Опис"
+                  type="textarea"
+                  v-model="formData.description"
+                />
               </div>
               <IButton class="mt-10 w-full" variant="gradient" :is-loading="props.isLoading"
                 >Зберегти</IButton
