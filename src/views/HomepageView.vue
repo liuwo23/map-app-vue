@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-white h-[350px] w-full lg:min-h-screen lg:w-[400px] shrink-0 pb-10">
-    <div class="w-full h-[340px] lg:h-auto overflow-auto">
+  <div class="bg-white h-[30%] w-full lg:min-h-screen lg:w-[400px] shrink-0 pb-5 lg:pb-10">
+    <div class="w-full h-[99%] lg:h-auto overflow-auto">
       <UserInfo />
       <div v-if="isPlacesLoading">
         <FavoritePlacesSkeleton />
