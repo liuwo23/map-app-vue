@@ -17,7 +17,7 @@ const emit = defineEmits(['cansel', 'confirm']);
   <component :is="Teleport" to="body">
     <IModal :is-show="isOpen" @close="emit('cansel')">
       <div class="mb-4 text-lg">{{ title }}</div>
-      <div class="flex gap-3 justify-center">
+      <div class="flex flex-col lg:flex-row gap-3 justify-center">
         <IButton @click="emit('cansel')" class="bg-transparent border-accent border-2 !text-accent"
           >Відхилити</IButton
         >

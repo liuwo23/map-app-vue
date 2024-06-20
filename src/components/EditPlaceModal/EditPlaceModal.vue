@@ -43,14 +43,14 @@ watch(
 <template>
   <component :is="Teleport" to="body">
     <IModal :is-show="props.isOpen" @close="emit('close')">
-      <div class="w-[750px]">
-        <div class="flex gap-2 items-center mb-10">
+      <div class="w-fit lg:w-[750px]">
+        <div class="flex flex-col lg:flex-row gap-2 items-center mb-10">
           <MarkerIcon is-active height="18" width="18" />
           <span class="font-bold text-base">Редагувати маркер</span>
         </div>
         <form @submit.prevent="emit('submit', formData)">
-          <div class="flex gap-5">
-            <div class="w-5/12">
+          <div class="flex flex-col lg:flex-row gap-5 w-full">
+            <div class="w-full lg:w-5/12">
               <img
                 class="w-full h-[276px] object-cover rounded-md"
                 :src="formData.img || fallbackImage"
@@ -58,7 +58,7 @@ watch(
               />
             </div>
 
-            <div class="w-7/12">
+            <div class="w-full lg:w-7/12">
               <IInput :error="isError" label="Локація" v-model="formData.title" type="text" />
               <div class="mt-4">
                 <IInput
