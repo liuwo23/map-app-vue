@@ -1,7 +1,8 @@
 import axios, { type AxiosRequestHeaders } from 'axios';
-import { router } from '../router';
+import { useRouter } from 'vue-router';
 import { authService } from './authService';
 
+const router = useRouter();
 export const clientFetch = axios.create({
   baseURL: 'https://back-for-vue.b.goit.study/'
 });
@@ -21,15 +22,14 @@ clientFetch.interceptors.response.use(
   (response) => response,
   async (error) => {
     try {
-      const errorCode = error.response.statusCode;
+      const errorCode = error.response.status;
       if (errorCode === 401) {
         await authService.refreshUserToken();
       }
     } catch (e) {
-      await router.push('/auth/login');
+      await router.push('/');
       return Promise.reject(e);
     }
-
     return Promise.reject(error);
   }
 );

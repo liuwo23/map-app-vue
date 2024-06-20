@@ -2,7 +2,7 @@
 import { defineProps } from 'vue';
 
 defineProps<{
-  isActive: boolean;
+  isActive?: boolean;
 }>();
 </script>
 

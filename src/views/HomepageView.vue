@@ -94,6 +94,7 @@ const activeID: Ref<null | string> = ref(null);
 const map: Ref<Map | null> = ref(null);
 
 const favoritePlaces: Ref<IFavItem[]> = computed(() => data.value ?? []);
+const isButtonDisabled = computed<boolean>(() => !!mapMarkerLngLat.value);
 
 const handleAddPlace = async (formData: IFormData, resetFormData: Function) => {
   try {

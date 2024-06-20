@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { defineProps, computed } from 'vue';
+import { defineProps, computed, ref } from 'vue';
+import EyeIcon from '@/components/icons/EyeIcon.vue';
 
 const props = defineProps<{
   label: string;
@@ -12,6 +13,8 @@ defineOptions({
   inheritAttrs: false
 });
 const emit = defineEmits(['update:modelValue']);
+
+const showPassword = ref(false);
 
 const baseStyles =
   'w-full text-sm rounded-[4px] border-[#eaeaea] border-[1px] py-2 px-3 focus:outline-primary';
@@ -30,7 +33,7 @@ const componentName = computed<string>(() => {
 
 <template>
   <div class="w-full text-[#2C2C2C]">
-    <label class="block">
+    <label class="block relative">
       <span class="block text-xs px-3 mb-2">{{ props.label }}</span>
       <component
         :is="componentName"
@@ -38,8 +41,18 @@ const componentName = computed<string>(() => {
         :class="error ? inputStyles + ' !border-red-500' : inputStyles"
         v-bind="{ ...$props, ...$attrs }"
         :value="modelValue"
+        :type="showPassword && props.type !== 'textarea' ? 'text' : 'password'"
         @input="emit('update:modelValue', $event.target.value)"
       />
+      <button
+        type="button"
+        v-if="props.type === 'password'"
+        class="absolute p-2 top-[25px] right-2"
+        @click="showPassword = !showPassword"
+        :class="showPassword ? 'fill-accent' : 'fill-inherit'"
+      >
+        <EyeIcon />
+      </button>
     </label>
   </div>
 </template>

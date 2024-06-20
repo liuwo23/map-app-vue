@@ -5,11 +5,9 @@ export const TOKEN_KEY = 'token';
 
 class AuthService {
   private token: null | string;
-  private user: {} | null;
 
   constructor() {
     this.token = null;
-    this.user = null;
   }
 
   isLoggedIn() {
@@ -51,10 +49,8 @@ class AuthService {
     this.setToken(accessToken);
     return data;
   }
-  async getUserInfo() {
-    const { data } = await clientFetch.get('user/me');
-    this.user = data;
-    return data;
+  getUserInfo() {
+    return clientFetch.get('user/me');
   }
 }
 
