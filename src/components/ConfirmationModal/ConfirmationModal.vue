@@ -19,14 +19,14 @@ const emit = defineEmits(['cansel', 'confirm']);
       <div class="mb-4 text-lg">{{ title }}</div>
       <div class="flex flex-col lg:flex-row gap-3 justify-center">
         <IButton @click="emit('cansel')" class="bg-transparent border-accent border-2 !text-accent"
-          >Відхилити</IButton
+          >拒绝</IButton
         >
         <IButton @click="emit('confirm')" variant="gradient" :is-loading="isLoading"
-          >Підтвердити
+          >确认
         </IButton>
       </div>
       <div v-if="hasError">
-        <p class="text-red-500 text-sm">Щось пішло не так!</p>
+        <p class="text-red-500 text-sm">出了点问题！</p>
       </div>
     </IModal>
   </component>
