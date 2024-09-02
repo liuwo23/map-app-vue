@@ -5,7 +5,7 @@
     :to="link"
     class="bg-accent rounded-xl py-3 px-10 text-white font-bold -tracking-wide"
   >
-    <template v-if="props.isLoading"><LoadingText text="Завантаження" /> </template>
+    <template v-if="props.isLoading"><LoadingText text="加载" /> </template>
     <template v-else>
       <slot></slot>
     </template>
