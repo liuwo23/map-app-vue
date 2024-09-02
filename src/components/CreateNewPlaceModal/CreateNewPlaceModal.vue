@@ -24,7 +24,7 @@ const handleUploaded = (url: string) => {
   formData.img = url;
 };
 const uploadText = computed<string>(() => {
-  return formData.img ? 'Натисніть тут, щоб змінити фото' : 'Натисніть тут, щоб додати фото';
+  return formData.img ? '点击此处更改照片' : '点击此处添加照片';
 });
 
 const resetFormData = () => {
@@ -40,14 +40,14 @@ const resetFormData = () => {
       <form @submit.prevent="emit('submit', formData, resetFormData)" class="min-w-[420px]">
         <div class="mb-10 font-bold text-center flex gap-1 items-center justify-center">
           <MarkerIcon />
-          Додати маркери
+          添加标记
         </div>
-        <IInput :error="hasError" v-model="formData.title" class="mb-4" label="Локація" />
+        <IInput :error="hasError" v-model="formData.title" class="mb-4" label="位置" />
         <IInput
           :error="hasError"
           v-model="formData.description"
           class="mb-2"
-          label="Опис"
+          label="描述"
           type="textarea"
         />
         <div class="mb-10 flex gap-2 items-center">
@@ -60,11 +60,11 @@ const resetFormData = () => {
           <InputImage @uploaded="handleUploaded">{{ uploadText }}</InputImage>
         </div>
         <IButton :is-loading="isLoading" variant="gradient" class="w-full" type="submit"
-          >Додати</IButton
+          >添加</IButton
         >
       </form>
       <div v-if="hasError">
-        <p class="text-red-500 text-sm">Щось пішло не так, перевірте ваші дані!</p>
+        <p class="text-red-500 text-sm">出了点问题，请检查您的数据！</p>
       </div>
     </IModal>
   </component>
