@@ -1,8 +1,8 @@
 <template>
   <div class="px-6 pt-3">
-    <div class="text-gray mb-4">Додані маркери</div>
+    <div class="text-gray mb-4">添加了标记</div>
     <div v-if="items.length === 0">
-      <h2>Ваш список пустий!</h2>
+      <h2>您的列表为空！</h2>
     </div>
     <FavoritePlace
       v-else
@@ -22,7 +22,7 @@
       @click="emit('create')"
       variant="gradient"
       class="w-full mt-10 disabled:from-zinc-200 disabled:to-zinc-200"
-      >Додати маркер</IButton
+      >添加标记</IButton
     >
     <EditPlaceModal
       :place="selectedItem"
@@ -38,7 +38,7 @@
       :has-error="!!deleteError"
       @cansel="closeDeleteModal"
       @confirm="handleDeletePlace"
-      title="Ви дійсно хочете видалити улюблене місце?"
+      title="您真的要删除收藏地点吗?"
     />
   </div>
 </template>
