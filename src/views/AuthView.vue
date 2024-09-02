@@ -11,10 +11,10 @@ import BaseLayout from '@/layouts/BaseLayout.vue';
           <section class="w-full bg-white px-2 py-5 md:p-10 rounded-lg md:rounded-2xl">
             <div class="flex items-center justify-center gap-10 mb-10">
               <RouterLink to="registration" class="text-gray" exact-active-class="text-primary"
-                >Створити аккаунт
+                >创建帐户
               </RouterLink>
               <RouterLink to="login" class="text-gray" exact-active-class="text-primary"
-                >Увійти
+                >登陆
               </RouterLink>
             </div>
 
