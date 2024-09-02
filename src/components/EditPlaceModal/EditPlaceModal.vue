@@ -46,7 +46,7 @@ watch(
       <div class="w-fit lg:w-[750px]">
         <div class="flex flex-col lg:flex-row gap-2 items-center mb-10">
           <MarkerIcon is-active height="18" width="18" />
-          <span class="font-bold text-base">Редагувати маркер</span>
+          <span class="font-bold text-base">编辑标记</span>
         </div>
         <form @submit.prevent="emit('submit', formData)">
           <div class="flex flex-col lg:flex-row gap-5 w-full">
@@ -59,23 +59,23 @@ watch(
             </div>
 
             <div class="w-full lg:w-7/12">
-              <IInput :error="isError" label="Локація" v-model="formData.title" type="text" />
+              <IInput :error="isError" label="位置" v-model="formData.title" type="text" />
               <div class="mt-4">
                 <IInput
                   :error="isError"
-                  label="Опис"
+                  label="描述"
                   type="textarea"
                   v-model="formData.description"
                 />
               </div>
               <IButton class="mt-10 w-full" variant="gradient" :is-loading="props.isLoading"
-                >Зберегти</IButton
+                >保存</IButton
               >
             </div>
           </div>
 
           <InputImage class="mt-3" @uploaded="handleChangeImg">
-            <span class="text-xs">Натисніть тут, щоб додати інше фото</span>
+            <span class="text-xs">点击此处添加其他照片</span>
           </InputImage>
         </form>
       </div>
