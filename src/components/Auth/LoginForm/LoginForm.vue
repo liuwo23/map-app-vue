@@ -3,20 +3,20 @@
     <IInput
       class="mb-4"
       v-model="loginData.email"
-      label="Електронна пошта"
+      label="电子邮件"
       placeholder="test@gmail.com"
       :error="error"
       type="email"
     />
     <IInput
       v-model="loginData.password"
-      label="Пароль"
+      label="密码"
       type="password"
       placeholder="***********"
       :error="error"
     />
     <IButton :isLoading="props.isLoading" class="mt-10 w-full" variant="gradient" type="submit"
-      >Увійти</IButton
+      >登陆</IButton
     >
   </form>
 </template>
