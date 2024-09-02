@@ -4,13 +4,13 @@
     <IInput
       v-model="userData.email"
       class="mb-4"
-      label="Електронна пошта"
+      label="电子邮件"
       placeholder="test@gmail.com"
       :error="error"
     />
-    <IInput v-model="userData.password" label="Пароль" type="password" :error="error" />
+    <IInput v-model="userData.password" label="密码" type="password" :error="error" />
     <IButton :isLoading="props.isLoading" class="mt-10 w-full" variant="gradient" type="submit"
-      >Створити аккаунт</IButton
+      >创建帐户</IButton
     >
   </form>
 </template>
