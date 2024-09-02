@@ -1,6 +1,6 @@
 <template>
   <LoginForm @submit="handleLoginUser" :is-loading="isLoading" :error="!!error" />
-  <p v-if="error" class="text-sm text-red-500 mt-2">Щось пішло не так! перевірте введені дані.</p>
+  <p v-if="error" class="text-sm text-red-500 mt-2">出错了！请检查输入数据。</p>
 </template>
 
 <script setup lang="ts">
